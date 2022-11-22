@@ -5,6 +5,12 @@
 ;; This script is used to switch between virtual desktops via vim hotkeys,
 ;; but you can set up your favorite keys if you wish.
 ;;
+;; Default hotkeys:
+;; Right: Shift + Alt + L
+;; Left:  Shift + Alt + H
+;;
+;; You may need to disable a special windows office hotkey with the following command in cmd:
+;; REG ADD HKCU\Software\Classes\ms-officeapp\Shell\Open\Command /t REG_SZ /d rundll32
 
 HintDelay := 80
 
@@ -18,7 +24,7 @@ HintDelay := 80
 +!L::
 SwitchRight()
 
-; Uncomment this lines to show desktop number on each switch
+; Uncomment the following line to show desktop number on each switch
 ;ShowHint("Display: " + GetCurrentDesktopNumber(), HintDelay)
 return
 
@@ -27,7 +33,7 @@ return
 +!H::
 SwitchLeft()
 
-; Uncomment this lines to show desktop number on each switch
+; Uncomment the following line to show desktop number on each switch
 ;ShowHint("Display: " + GetCurrentDesktopNumber(), HintDelay)
 return
 

@@ -7,12 +7,12 @@
 #UseHook
 
 
-;; This script is used to switch between virtual desktops via vim hotkeys,
-;; but you can set up your favorite keys if you wish.
-;;
 ;; Default hotkeys:
-;; Right: Shift + Alt + L
-;; Left:  Shift + Alt + H
+;; Shift + Alt + L - switch to the right virtual screen
+;; Shift + Alt + H - switch to the left  virtual screen
+;;
+;; Shift == +
+;; Alt   == !
 ;;
 ;; You may need to disable a special windows office hotkey with the following command in cmd:
 ;; REG ADD HKCU\Software\Classes\ms-officeapp\Shell\Open\Command /t REG_SZ /d rundll32
@@ -27,15 +27,19 @@ HintDelay := 50
 
 ; Switch to right virtual desktop
 +!L::
-SwitchRight()
-ShowHint("Display: " + GetCurrentDesktopNumber(), HintDelay)
-return
+{
+	SwitchRight()
+	ShowHint("Display: " + GetCurrentDesktopNumber(), HintDelay)
+	return
+}
 
 ; Switch to left virtual desktop
 +!H::
-SwitchLeft()
-ShowHint("Display: " + GetCurrentDesktopNumber(), HintDelay)
-return
+{
+	SwitchLeft()
+	ShowHint("Display: " + GetCurrentDesktopNumber(), HintDelay)
+	return
+}
 
 
 
@@ -43,13 +47,13 @@ return
 ;; Functions
 ;;;;;;;;;;;;;;;;;;;
 
-ShowHint(HintMsg, Delay)
+ShowHint(HintMsg, HideDelay)
 {
 	win_width := 110
 	center_x := A_ScreenWidth // 2 - win_width
 	center_y := A_ScreenHeight // 2
 	SplashImage, , M1 B fs14 ctFFFF00 cwBlack x%center_x% y%center_y% w%win_width%, %HintMsg%
-	sleep, %Delay%
+	sleep, %HideDelay%
 	Splashimage,off
 }
 

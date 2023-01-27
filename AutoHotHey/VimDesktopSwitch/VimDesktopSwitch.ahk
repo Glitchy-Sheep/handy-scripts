@@ -1,7 +1,12 @@
+;; Set keyboard hooks to make the script more responsible
+;; also don't allow to run the script twice to avoid errors
+
 #NoEnv
 #SingleInstance force
+#InstallKeybdhook
+#UseHook
 
-;;
+
 ;; This script is used to switch between virtual desktops via vim hotkeys,
 ;; but you can set up your favorite keys if you wish.
 ;;
@@ -12,7 +17,7 @@
 ;; You may need to disable a special windows office hotkey with the following command in cmd:
 ;; REG ADD HKCU\Software\Classes\ms-officeapp\Shell\Open\Command /t REG_SZ /d rundll32
 
-HintDelay := 80
+HintDelay := 50
 
 
 
@@ -23,24 +28,19 @@ HintDelay := 80
 ; Switch to right virtual desktop
 +!L::
 SwitchRight()
-
-; Uncomment the following line to show desktop number on each switch
-;ShowHint("Display: " + GetCurrentDesktopNumber(), HintDelay)
+ShowHint("Display: " + GetCurrentDesktopNumber(), HintDelay)
 return
-
 
 ; Switch to left virtual desktop
 +!H::
 SwitchLeft()
-
-; Uncomment the following line to show desktop number on each switch
-;ShowHint("Display: " + GetCurrentDesktopNumber(), HintDelay)
+ShowHint("Display: " + GetCurrentDesktopNumber(), HintDelay)
 return
 
 
 
 ;;;;;;;;;;;;;;;;;;;
-;;; Functions
+;; Functions
 ;;;;;;;;;;;;;;;;;;;
 
 ShowHint(HintMsg, Delay)
